@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 
@@ -8,8 +9,11 @@ import (
 )
 
 func main() {
+	godotenv.Load()
+
 	e := echo.New()
 	e.Use(middleware.Logger())
+	e.HTTPErrorHandler = handler.ErrorHandler
 
 	handler.ApplyRoutes(e)
 

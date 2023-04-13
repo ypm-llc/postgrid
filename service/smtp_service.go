@@ -1,6 +1,8 @@
 package service
 
 import (
+	"os"
+
 	"github.com/ypm-llc/postgrid/infra"
 	"github.com/ypm-llc/postgrid/message"
 )
@@ -8,6 +10,15 @@ import (
 type SMTPService struct {
 	client *infra.SMTPClient
 	Server string
+}
+
+func NewSMTPService() *SMTPService {
+	smtpServer := "127.0.0.1:25"
+	v := os.Getenv("SMTP_SERVER")
+	if v != "" {
+		smtpServer = v
+	}
+	return &SMTPService{Server: smtpServer}
 }
 
 func (s *SMTPService) Send(m *message.Mail) error {

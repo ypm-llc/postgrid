@@ -8,10 +8,8 @@ import (
 
 func ApplyRoutes(e *echo.Echo) {
 	pingHandler := &PingHandler{}
-	mailHandler := &MailHandler{
-		SMTPService: &service.SMTPService{Server: "localhost:25"},
-	}
+	mailHandler := &MailHandler{SMTPService: service.NewSMTPService()}
 
-	e.GET("/ping", pingHandler.ping)
+	e.GET("/ping", pingHandler.Ping)
 	e.POST("/mail", mailHandler.Send)
 }
