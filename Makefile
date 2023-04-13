@@ -7,4 +7,4 @@ build:
 	go build -o bin/$(NAME) -ldflags "-X main.version=$(VERSION) -X main.commit=$(COMMIT) -X main.date=$(DATE)"
 
 run: 
-	go run main.go
+	air

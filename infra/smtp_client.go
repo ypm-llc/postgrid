@@ -3,6 +3,7 @@ package infra
 import (
 	"io"
 	"strings"
+	"time"
 
 	"github.com/emersion/go-smtp"
 	"github.com/ypm-llc/postgrid/message"
@@ -23,6 +24,9 @@ func (c *SMTPClient) Connect() error {
 	if err != nil {
 		return err
 	}
+	client.CommandTimeout = 5 * time.Second
+	client.SubmissionTimeout = 5 * time.Second
+
 	c.Client = client
 	return nil
 }
