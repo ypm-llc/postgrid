@@ -1,0 +1,62 @@
+openapi: 3.0.0
+info:
+  version: "0.0.1"
+  title: postgrid mail API
+
+paths:
+  /ping:
+    get:
+      summary: Pings the server
+      description: Returns a string "pong" to the client confirming the server is running
+      responses:
+        '200':
+          description: A successful response
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /mail:
+    post:
+      summary: Sends a mail
+      description: Sends a mail using SMTPService and returns "ok" if successful
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Mail'
+      responses:
+        '200':
+          description: A successful response
+          content:
+            text/plain:
+              schema:
+                type: string
+
+components:
+  schemas:
+    Mail:
+      type: object
+      properties:
+        from:
+          type: string
+        to:
+          type: array
+          items:
+            type: string
+        cc:
+          type: array
+          items:
+            type: string
+        bcc:
+          type: array
+          items:
+            type: string
+        subject:
+          type: string
+        body:
+          type: string
+
+    StringResponse:
+      type: string
