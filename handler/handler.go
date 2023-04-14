@@ -12,4 +12,5 @@ func ApplyRoutes(e *echo.Echo) {
 
 	e.GET("/ping", pingHandler.Ping)
 	e.POST("/mail", mailHandler.Send)
+	e.POST("/mails", mailHandler.BulkSend)
 }
