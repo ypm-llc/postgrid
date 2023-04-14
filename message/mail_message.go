@@ -8,3 +8,7 @@ type Mail struct {
 	Subject string   `json:"subject"`
 	Body    string   `json:"body"`
 }
+
+type Mails struct {
+	Items []*Mail `json:"items"`
+}
