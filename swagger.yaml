@@ -33,6 +33,23 @@ paths:
             text/plain:
               schema:
                 type: string
+  /mails:
+    post:
+      summary: Sends multiple mails
+      description: Sends multiple mails using SMTPService and returns "ok" if successful
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Mails'
+      responses:
+        '200':
+          description: A successful response
+          content:
+            text/plain:
+              schema:
+                type: string
 
 components:
   schemas:
@@ -57,6 +74,14 @@ components:
           type: string
         body:
           type: string
+
+    Mails:
+      type: object
+      properties:
+        mails:
+          type: array
+          items:
+            $ref: '#/components/schemas/Mail'
 
     StringResponse:
       type: string
